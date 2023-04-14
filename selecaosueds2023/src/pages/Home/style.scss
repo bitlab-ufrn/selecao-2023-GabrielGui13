@@ -1,0 +1,29 @@
+.page-layout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100%;
+	margin-top: 10vh;
+
+	& h2, p {
+		text-align: center;
+	}
+	
+	#floating-box {
+		background-color: white;
+		min-height: 50vh;
+		min-width: 25vw;
+		padding: 30px 60px;
+		border-radius: 10px;
+	}
+
+	hr {
+		opacity: 20%;
+	}
+}
+
+@media (max-width: 600px) {
+	.page-layout {
+		background-color: red;
+	}
+}
