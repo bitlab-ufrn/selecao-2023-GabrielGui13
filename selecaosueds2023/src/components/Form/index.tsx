@@ -1,22 +1,56 @@
 import { FormEvent, useState } from 'react'
 import './style.scss'
-import { suggestFilter } from '../../utils/suggestFilter'
+import { textFilter } from '../../utils/textFilter'
+import { triggerToast } from '../../utils/triggerToast'
+import { publishSuggest } from '../../utils/publishSuggest'
 
 export const Form = () => {
 	const [name, setName] = useState('')
 	const [suggest, setSuggest] = useState('')
 
-	const handleSubmit = (e: FormEvent) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
 
-		const data = {
-			name: name,
-			suggest: suggest
+		if (name.trim() === '') {
+			triggerToast({
+				message: 'Nome inválido!',
+				type: 'warning'
+			})
+
+			return
 		}
 
-		suggestFilter('teste')
+		if (suggest.trim() === '') {
+			triggerToast({
+				message: 'Comentário inválido!',
+				type: 'warning'
+			})
 
-		console.log(data)
+			return
+		}
+
+		const result = await textFilter(suggest)
+
+		if (!result.approved) {
+			triggerToast({
+				message: 'Comentário com conteúdo ofensivo!',
+				type: 'error'
+			})
+
+			return
+		}
+
+		const data = {
+			name,
+			suggest
+		}
+
+		publishSuggest(data)
+
+		triggerToast({
+			message: 'Comentário publicado com sucesso!',
+			type: 'success'
+		})
 	}
 	
 	return (

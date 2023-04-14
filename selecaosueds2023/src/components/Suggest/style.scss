@@ -1,0 +1,32 @@
+#suggest {
+	width: 100%;
+	box-shadow: 3px 5px 15px #00000033;
+	border-radius: 7px;
+	padding: 10px;
+	margin-top: 10px;
+
+	& #suggest-id {
+		display: flex;
+		align-items: center;
+		gap: 10px;			
+
+		& p {
+			font-weight: bold;
+		}
+
+		& #suggest-img {
+			height: 35px;
+
+			& img {
+				height: 100%;
+				border-radius: 50px;
+			}
+		}
+	}
+
+	& #suggest-text {
+		margin-top: 10px;
+		margin-left: 45px;
+		text-align: left;
+	}
+}
