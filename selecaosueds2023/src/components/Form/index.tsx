@@ -3,10 +3,16 @@ import './style.scss'
 import { textFilter } from '../../utils/textFilter'
 import { triggerToast } from '../../utils/triggerToast'
 import { publishSuggest } from '../../utils/publishSuggest'
+import { SuggestType } from '../../types/localTypes'
 
-export const Form = () => {
+type FormProps = {
+	handleAddNewSuggest: (suggest: SuggestType) => void;
+}
+
+export const Form = ({ handleAddNewSuggest }: FormProps) => {
 	const [name, setName] = useState('')
 	const [suggest, setSuggest] = useState('')
+	const [badWords, setBadWords] = useState<string[]>([])
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
@@ -37,6 +43,8 @@ export const Form = () => {
 				type: 'error'
 			})
 
+			setBadWords(result.foundWords)
+
 			return
 		}
 
@@ -45,7 +53,12 @@ export const Form = () => {
 			suggest
 		}
 
-		publishSuggest(data)
+		const newSuggest = publishSuggest(data)
+		
+		handleAddNewSuggest(newSuggest)
+		setBadWords([])
+		setName('')
+		setSuggest('')
 
 		triggerToast({
 			message: 'Comentário publicado com sucesso!',
@@ -56,11 +69,20 @@ export const Form = () => {
 	return (
 		<div id="form">
 			<form id="form-wrapper" onSubmit={handleSubmit}>
-				<label htmlFor="name-input">Apelido do Github</label>	
-				<input type="text" id="name-input" value={name} onChange={(e) => setName(e.target.value)} />
+				<label htmlFor="form-name-input">Apelido do Github</label>	
+				<input type="text" id="form-name-input" value={name} onChange={(e) => setName(e.target.value)} />
 
-				<label htmlFor="suggest-textarea">Comentário</label>	
-				<textarea name="suggest-textarea" id="suggest-textarea" value={suggest} onChange={(e) => setSuggest(e.target.value)} />
+				<label htmlFor="form-suggest-textarea">Comentário</label>	
+				<textarea name="form-suggest-textarea" id="form-suggest-textarea" value={suggest} onChange={(e) => setSuggest(e.target.value)} />
+
+				<div id="form-bad-words" style={{ display: badWords.length == 0 ? 'none' : 'inline-block' }}>
+					<small>
+						Conteúdo ofensivo detectado: {' '}
+						{badWords.map((badWord) => (
+							<span>{`[${badWord}] `}</span>
+						))}
+					</small>
+				</div>
 
 				<div id="form-button">
 					<button type="submit">ENVIAR</button>

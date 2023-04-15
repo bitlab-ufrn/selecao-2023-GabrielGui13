@@ -1,6 +1,7 @@
 #form {
 	width: 100%;
 	margin-bottom: 25px;
+	display: inline-block;
 
 	& #form-wrapper {
 		display: flex;
@@ -40,6 +41,11 @@
 				border: 2px solid #3d3d3daa;
 			}
 		}
+	}
+
+	#form-bad-words {
+		color: red;
+		text-align: center;
 	}
 
 	#form-button {

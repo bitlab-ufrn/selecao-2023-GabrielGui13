@@ -6,7 +6,7 @@ type CommentData = {
 	suggest: string;
 }
 
-export const publishSuggest = ({ name, suggest }: CommentData) => {
+export const publishSuggest = ({ name, suggest }: CommentData): SuggestType => {
 	const suggests = localStorage.getItem('suggests')
 	const parsedSuggests = JSON.parse(suggests || '')
 
@@ -18,8 +18,6 @@ export const publishSuggest = ({ name, suggest }: CommentData) => {
 	const hour = thisDate.getHours().toString().length === 1 ? `0${thisDate.getHours()}` : thisDate.getHours()
 
 	const createdAt = `${day}/${month}/${year} - ${hour}:${minute}`
-
-	console.log(createdAt)
 	
 	const data: SuggestType = {
 		id: uuid(),
@@ -32,4 +30,6 @@ export const publishSuggest = ({ name, suggest }: CommentData) => {
 	parsedSuggests.push(data)
 
 	localStorage.setItem('suggests', JSON.stringify(parsedSuggests))
+
+	return data
 }

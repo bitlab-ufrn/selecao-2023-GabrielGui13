@@ -18,11 +18,16 @@ export const textFilter = async (text: string): Promise<FilteredTextType> => {
 		.replace(/[^a-zA-Z0-9 ]/g, ' ')
 		.split(' ')
 		.filter((word: string) => word.trim() !== '')
+
 		
-	const foundBadWords = textWords.filter((word: string) => badWordsArray.some((bw: string) => word === bw))
+	const foundBadWords = textWords
+		.filter((word: string) => badWordsArray.some((bw: string) => word === bw))
+
+	const finalFoundBadWordsArray = foundBadWords
+		.filter((item,index) => foundBadWords.indexOf(item) === index);
 
 	return {
-		approved: foundBadWords.length === 0,
-		foundWords: foundBadWords
+		approved: finalFoundBadWordsArray.length === 0,
+		foundWords: finalFoundBadWordsArray
 	}
 }

@@ -1,8 +1,6 @@
 import { SuggestType } from '../../types/localTypes'
 import './style.scss'
 
-
-
 export const Suggest = (suggest: SuggestType) => {
 	return (
 		<div id='suggest'>
@@ -14,6 +12,7 @@ export const Suggest = (suggest: SuggestType) => {
 					<p>{suggest.name}</p>
 				</div>
 				<div>
+					<p>Apagar</p>
 				</div>
 			</div>
 			<p id='suggest-text'>{suggest.suggest}</p>

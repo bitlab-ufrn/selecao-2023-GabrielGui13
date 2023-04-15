@@ -4,15 +4,30 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import "./style.scss"
 import { SuggestBox } from "../../components/SuggestBox";
+import { SuggestType } from "../../types/localTypes";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
-	const createSuggests = localStorage.getItem('suggests')
+	const [allSuggests, setAllSuggests] = useState<SuggestType[]>([])
+	
 	const newWords = localStorage.getItem('words')
+	const getSuggests = localStorage.getItem('suggests')
 
-	if (!createSuggests) localStorage.setItem('suggests', JSON.stringify([]))
 	if (!newWords) localStorage.setItem('words', JSON.stringify([]))
+	if (!getSuggests) localStorage.setItem('suggests', JSON.stringify([]))
+	
+	// setAllSuggests(JSON.parse(getSuggests || ''))
 
-	console.log(createSuggests, newWords)
+	useEffect(() => {
+		const suggests = localStorage.getItem('suggests')
+		const parsedSuggests: SuggestType[] = JSON.parse(suggests || '').reverse()
+
+		setAllSuggests(parsedSuggests)
+	}, [])
+
+	const addNewSuggest = (suggest: SuggestType) => {
+		setAllSuggests((prev) => [suggest, ...prev])
+	}
 	
 	return (
 		<>
@@ -23,10 +38,10 @@ export const Home = () => {
 					<h2>Portal de sugestões do IMD</h2>
 					<p style={{ marginBottom: '20px' }}>Faça uma sugestão das coisas que o IMD deve melhorar.</p>
 
-					<Form />
+					<Form handleAddNewSuggest={(suggest) => addNewSuggest(suggest)} />
 					<hr />
 
-					<SuggestBox />
+					<SuggestBox suggests={allSuggests} />
 				</div>
 			</div>
 
