@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { SuggestType } from '../components/types/localTypes';
+import { SuggestType } from '../types/localTypes';
 
 type CommentData = {
 	name: string;
@@ -29,7 +29,7 @@ export const publishSuggest = ({ name, suggest }: CommentData) => {
 		createdAt
 	}
 
-	// parsedSuggests.push(data)
+	parsedSuggests.push(data)
 
 	localStorage.setItem('suggests', JSON.stringify(parsedSuggests))
 }

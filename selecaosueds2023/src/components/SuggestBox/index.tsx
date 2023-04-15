@@ -1,5 +1,5 @@
 import { Suggest } from '../Suggest'
-import { SuggestType } from '../types/localTypes'
+import { SuggestType } from '../../types/localTypes'
 import './style.scss'
 
 export const SuggestBox = () => {
@@ -9,7 +9,8 @@ export const SuggestBox = () => {
 	return (
 		<div id="suggest-box">
 			<h3>Comentários</h3>
-			<div>
+
+			<div id="suggests">
 				{parsedSuggests.map((suggest: SuggestType) => <Suggest {...suggest} />)}
 			</div>
 		</div>
