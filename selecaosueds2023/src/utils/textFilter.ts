@@ -15,7 +15,7 @@ export const textFilter = async (text: string): Promise<FilteredTextType> => {
 	const textWords = text
 		.trim()
 		.toLowerCase()
-		.replace(/[^a-zA-Z0-9 ]/g, '')
+		.replace(/[^a-zA-Z0-9 ]/g, ' ')
 		.split(' ')
 		.filter((word: string) => word.trim() !== '')
 		
