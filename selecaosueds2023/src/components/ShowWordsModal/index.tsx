@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import './style.scss'
-import { Box, Button, Card, Fade, Modal, Paper, Stack, TextField, Typography, styled } from '@mui/material'
+import { Box, Card, Modal, Paper, Stack, Typography, styled } from '@mui/material'
 import { useEffect } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs'
+import { removeWord } from '../../utils/removeWord';
+import { triggerToast } from '../../utils/triggerToast';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,6 +28,15 @@ export const ShowWordsModal = ({ open, handleClose }: ShowWordsModalProps) => {
 
 		setWords(parsedWords)
 	}, [])
+
+	const handleRemoveWord = (word: string) => {
+		removeWord(word)
+		triggerToast({
+			message: 'Palavra removida com sucesso!',
+			type: 'success'
+		})
+		handleClose()
+	}
 	
 	return (
 		<Modal 
@@ -66,7 +78,22 @@ export const ShowWordsModal = ({ open, handleClose }: ShowWordsModalProps) => {
 						}}
 					>
 						{words.map(word => (
-							<Item key={word}>{word}</Item>
+							<Box
+								sx={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'space-between',
+								}}
+							>
+								<Item key={word}>{word}</Item>
+								<BsFillTrashFill 
+									style={{
+										color: '#08357e',
+										cursor: 'pointer',
+									}}
+									onClick={() => handleRemoveWord(word)}
+								/>
+							</Box>
 						))}
 					</Stack>
 				</Box>
