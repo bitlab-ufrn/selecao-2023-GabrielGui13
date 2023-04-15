@@ -22,8 +22,12 @@
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
 	.page-layout {
-		background-color: red;
+		padding: 10px;
+
+		#floating-box {
+			padding: 20px 30px;
+		}
 	}
 }

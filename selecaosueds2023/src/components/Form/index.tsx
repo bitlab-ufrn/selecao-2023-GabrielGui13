@@ -4,6 +4,7 @@ import { textFilter } from '../../utils/textFilter'
 import { triggerToast } from '../../utils/triggerToast'
 import { publishSuggest } from '../../utils/publishSuggest'
 import { SuggestType } from '../../types/localTypes'
+import { EventType } from '@testing-library/react'
 
 type FormProps = {
 	handleAddNewSuggest: (suggest: SuggestType) => void;
@@ -54,7 +55,7 @@ export const Form = ({ handleAddNewSuggest }: FormProps) => {
 		}
 
 		const newSuggest = publishSuggest(data)
-		
+
 		handleAddNewSuggest(newSuggest)
 		setBadWords([])
 		setName('')
@@ -64,6 +65,10 @@ export const Form = ({ handleAddNewSuggest }: FormProps) => {
 			message: 'Comentário publicado com sucesso!',
 			type: 'success'
 		})
+	}
+
+	const openModal = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		e.preventDefault()
 	}
 	
 	return (
@@ -88,6 +93,7 @@ export const Form = ({ handleAddNewSuggest }: FormProps) => {
 					<button type="submit">ENVIAR</button>
 				</div>
 			</form>
+			<a href='' onClick={openModal}>Encontrou algum erro?</a>					
 		</div>
 	)
 }

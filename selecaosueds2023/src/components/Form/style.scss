@@ -69,4 +69,16 @@
 			}
 		}
 	}
+
+	& a, a:visited {
+		display: block;
+		margin-top: 12px;
+		color: #0145b1;
+		text-align: center;
+		transition: 0.2s;
+
+		&:hover {
+			color: #08357e;
+		}
+	}
 }

@@ -16,8 +16,6 @@ export const Home = () => {
 	if (!newWords) localStorage.setItem('words', JSON.stringify([]))
 	if (!getSuggests) localStorage.setItem('suggests', JSON.stringify([]))
 	
-	// setAllSuggests(JSON.parse(getSuggests || ''))
-
 	useEffect(() => {
 		const suggests = localStorage.getItem('suggests')
 		const parsedSuggests: SuggestType[] = JSON.parse(suggests || '').reverse()
