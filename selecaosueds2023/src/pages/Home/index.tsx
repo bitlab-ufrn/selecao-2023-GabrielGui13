@@ -27,6 +27,10 @@ export const Home = () => {
 	const addNewSuggest = (suggest: SuggestType) => {
 		setAllSuggests((prev) => [suggest, ...prev])
 	}
+
+	const removeSuggest = (id: string) => {
+		setAllSuggests((prev) => prev.filter(suggest => suggest.id !== id))
+	}
 	
 	return (
 		<>
@@ -40,7 +44,7 @@ export const Home = () => {
 					<Form handleAddNewSuggest={(suggest) => addNewSuggest(suggest)} />
 					<hr />
 
-					<SuggestBox suggests={allSuggests} />
+					<SuggestBox suggests={allSuggests} handleRemoveSuggest={(id) => removeSuggest(id)} />
 				</div>
 			</div>
 
