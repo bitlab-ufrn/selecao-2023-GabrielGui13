@@ -33,6 +33,16 @@ Você está livre para utilizar qualquer linguagem ou ferramenta.
 1. Faça deploy para algum serviço de __cloud__ para que possamos acessar facilmente e testar sua aplicação. Sugestão https://vercel.com/
 1. Adicione a esse README instruções de acesso ao seu sistema
 
+## Apresentação
+
+* O [Portal de Sugestões IMD](https://selecao-2023-gabriel-gui13.vercel.app/) é uma iniciativa de simular um portal para que usuários possam dar sugestões quando a novas melhorias no prédio e ambiente do IMD.
+* Este sistema recebe um nome de usuário vinculado ao github e um comentário para serem adicionados a uma lista de sugestões locais.
+* Cada comentário passa por um algoritmo de detecção de conteúdo explícito e/ou ofensivo com palavras pré-definidas.
+* Caso haja uma falha na detecção de conteúdo ofensivo, o usuário que encontrou o erro tem a possibilidade de adicionar essa palavra não verificada na lista de palavras ofensivas.
+* Todas as palavras e comentários após adicionados podem ser apagados.
+* A lista de comentários pode ser gerenciada por paginação
+* O banco de dados para os comentários e as palavras ofensivas se limitam localmente ao navegador do usuário.
+
 ## Acesso
 
-* Link: [Portal de comentarios IMD](https://selecao-2023-gabriel-gui13.vercel.app/)
+* Link: https://selecao-2023-gabriel-gui13.vercel.app/

@@ -36,7 +36,7 @@ export const SuggestBox = ({ suggests, handleRemoveSuggest }: SuggestBoxProps) =
 		<div id="suggest-box">
 			<h3>Comentários</h3>
 
-			<div id="suggests">
+			{suggests.length != 0 && (
 				<Select
 					labelId="change-limit"
 					id="change-limit"
@@ -44,7 +44,7 @@ export const SuggestBox = ({ suggests, handleRemoveSuggest }: SuggestBoxProps) =
 					label="Limite"
 					onChange={handleLimitChange}
 					sx={{
-						marginBottom: '15px'
+						marginTop: '15px'
 					}}
 				>
 					{/* <MenuItem value={' '}>&nbsp;</MenuItem> */}
@@ -52,6 +52,9 @@ export const SuggestBox = ({ suggests, handleRemoveSuggest }: SuggestBoxProps) =
 					<MenuItem value={'5'}>5</MenuItem>
 					<MenuItem value={'10'}>10</MenuItem>
 				</Select>
+			)}
+
+			<div id="suggests">
 
 				{filteredSuggests.map((suggest: SuggestType) => <Suggest {...suggest} handleRemoveSuggest={(id: string) => handleRemoveSuggest(id)} />)}
 
