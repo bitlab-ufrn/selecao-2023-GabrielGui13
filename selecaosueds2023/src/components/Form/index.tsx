@@ -5,12 +5,15 @@ import { triggerToast } from '../../utils/triggerToast'
 import { publishSuggest } from '../../utils/publishSuggest'
 import { SuggestType } from '../../types/localTypes'
 import { EventType } from '@testing-library/react'
+import { AddWordModal } from '../AddWordModal'
 
 type FormProps = {
 	handleAddNewSuggest: (suggest: SuggestType) => void;
 }
 
 export const Form = ({ handleAddNewSuggest }: FormProps) => {
+  const [openModal, setOpenModal] = useState(false);
+
 	const [name, setName] = useState('')
 	const [suggest, setSuggest] = useState('')
 	const [badWords, setBadWords] = useState<string[]>([])
@@ -67,33 +70,40 @@ export const Form = ({ handleAddNewSuggest }: FormProps) => {
 		})
 	}
 
-	const openModal = (e: React.MouseEvent<HTMLAnchorElement>) => {
+	const handleCloseModal = () => setOpenModal(false);
+
+	const handleOpenModal = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault()
+		setOpenModal(true)
 	}
 	
 	return (
-		<div id="form">
-			<form id="form-wrapper" onSubmit={handleSubmit}>
-				<label htmlFor="form-name-input">Apelido do Github</label>	
-				<input type="text" id="form-name-input" value={name} onChange={(e) => setName(e.target.value)} />
+		<>
+			<div id="form">
+				<form id="form-wrapper" onSubmit={handleSubmit}>
+					<label htmlFor="form-name-input">Apelido do Github</label>	
+					<input type="text" id="form-name-input" value={name} onChange={(e) => setName(e.target.value)} />
 
-				<label htmlFor="form-suggest-textarea">Comentário</label>	
-				<textarea name="form-suggest-textarea" id="form-suggest-textarea" value={suggest} onChange={(e) => setSuggest(e.target.value)} />
+					<label htmlFor="form-suggest-textarea">Comentário</label>	
+					<textarea name="form-suggest-textarea" id="form-suggest-textarea" value={suggest} onChange={(e) => setSuggest(e.target.value)} />
 
-				<div id="form-bad-words" style={{ display: badWords.length == 0 ? 'none' : 'inline-block' }}>
-					<small>
-						Conteúdo ofensivo detectado: {' '}
-						{badWords.map((badWord) => (
-							<span>{`[${badWord}] `}</span>
-						))}
-					</small>
-				</div>
+					<div id="form-bad-words" style={{ display: badWords.length == 0 ? 'none' : 'inline-block' }}>
+						<small>
+							Conteúdo ofensivo detectado: {' '}
+							{badWords.map((badWord) => (
+								<span>{`[${badWord}] `}</span>
+							))}
+						</small>
+					</div>
 
-				<div id="form-button">
-					<button type="submit">ENVIAR</button>
-				</div>
-			</form>
-			<a href='' onClick={openModal}>Encontrou algum erro?</a>					
-		</div>
+					<div id="form-button">
+						<button type="submit">ENVIAR</button>
+					</div>
+				</form>
+				<a href='' onClick={handleOpenModal}>Encontrou algum erro?</a>
+			</div>
+
+			<AddWordModal open={openModal} handleClose={handleCloseModal} />
+		</>
 	)
 }

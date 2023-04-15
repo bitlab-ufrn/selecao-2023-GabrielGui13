@@ -6,11 +6,8 @@ type FilteredTextType = {
 }
 
 export const textFilter = async (text: string): Promise<FilteredTextType> => {
-	const badWords = await axios.get('https://raw.githubusercontent.com/masterzion/mztg/master/mztg/classified/PT-BR/palavroes.txt')
-
-	const badWordsArray: string[] = badWords.data
-		.split('\n')
-		.map((name: string) => name.replace('\r', '').toLowerCase())
+	const getBadWords = await localStorage.getItem('words');
+	const badWords: string[] = JSON.parse(getBadWords || '')
 
 	const textWords = text
 		.trim()
@@ -18,10 +15,9 @@ export const textFilter = async (text: string): Promise<FilteredTextType> => {
 		.replace(/[^a-zA-Z0-9 ]/g, ' ')
 		.split(' ')
 		.filter((word: string) => word.trim() !== '')
-
 		
 	const foundBadWords = textWords
-		.filter((word: string) => badWordsArray.some((bw: string) => word === bw))
+		.filter((word: string) => badWords.some((bw: string) => word === bw))
 
 	const finalFoundBadWordsArray = foundBadWords
 		.filter((item,index) => foundBadWords.indexOf(item) === index);

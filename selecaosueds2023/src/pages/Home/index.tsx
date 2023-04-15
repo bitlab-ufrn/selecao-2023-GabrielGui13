@@ -6,6 +6,7 @@ import "./style.scss"
 import { SuggestBox } from "../../components/SuggestBox";
 import { SuggestType } from "../../types/localTypes";
 import { useEffect, useState } from "react";
+import { seedBadWords } from "../../utils/seedBadWords";
 
 export const Home = () => {
 	const [allSuggests, setAllSuggests] = useState<SuggestType[]>([])
@@ -13,7 +14,7 @@ export const Home = () => {
 	const newWords = localStorage.getItem('words')
 	const getSuggests = localStorage.getItem('suggests')
 
-	if (!newWords) localStorage.setItem('words', JSON.stringify([]))
+	if (!newWords) seedBadWords()
 	if (!getSuggests) localStorage.setItem('suggests', JSON.stringify([]))
 	
 	useEffect(() => {
