@@ -6,7 +6,7 @@ export const addNewWord = (newWord: string): boolean => {
 
 	if (findWord) return false
 
-	const wordsArray = [newWord, ...parsedWords]
+	const wordsArray = [newWord.toLowerCase(), ...parsedWords]
 		.sort()
 		.reverse()
 

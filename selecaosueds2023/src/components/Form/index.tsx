@@ -23,7 +23,7 @@ export const Form = ({ handleAddNewSuggest }: FormProps) => {
 
 		if (name.trim() === '') {
 			triggerToast({
-				message: 'Nome inválido!',
+				message: 'Apelido inválido!',
 				type: 'warning'
 			})
 

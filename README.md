@@ -33,7 +33,7 @@ Você está livre para utilizar qualquer linguagem ou ferramenta.
 1. Faça deploy para algum serviço de __cloud__ para que possamos acessar facilmente e testar sua aplicação. Sugestão https://vercel.com/
 1. Adicione a esse README instruções de acesso ao seu sistema
 
-## Apresentação
+## Sistema
 
 * O [Portal de Sugestões IMD](https://selecao-2023-gabriel-gui13.vercel.app/) é uma iniciativa de simular um portal para que usuários possam dar sugestões quando a novas melhorias no prédio e ambiente do IMD.
 * Este sistema recebe um nome de usuário vinculado ao github e um comentário para serem adicionados a uma lista de sugestões locais.
