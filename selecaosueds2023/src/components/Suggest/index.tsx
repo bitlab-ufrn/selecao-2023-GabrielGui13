@@ -14,11 +14,12 @@ export const Suggest = (suggest: SuggestType) => {
 					<p>{suggest.name}</p>
 				</div>
 				<div>
-					<p>Apagar</p>
 				</div>
 			</div>
 			<p id='suggest-text'>{suggest.suggest}</p>
-			<small>{suggest.createdAt}</small>
+			<div id='suggest-date'>
+				<small>{suggest.createdAt}</small>
+			</div>
 		</div>
 	)
 }

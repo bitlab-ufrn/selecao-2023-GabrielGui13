@@ -35,4 +35,14 @@
 		margin-left: 45px;
 		text-align: left;
 	}
+
+	& #suggest-date {
+		margin-top: 15px;
+		display: flex;
+		justify-content: end;
+
+		& small {
+			opacity: 0.5;
+		}
+	}
 }
