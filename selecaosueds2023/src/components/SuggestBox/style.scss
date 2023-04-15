@@ -5,4 +5,11 @@
 	& #suggests {
 		margin-top: 20px;
 	}
+
+	& #suggests-pagination {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-top: 30px;
+	}
 }

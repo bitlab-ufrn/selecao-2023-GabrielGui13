@@ -15,7 +15,7 @@ export const triggerToast = ({ message, type, options }: ToastType) => {
 		pauseOnHover: true,
 		draggable: true,
 		progress: undefined,
-		theme: "light",
+		theme: "colored",
 		style: {
 			fontWeight: 'bold',
 			fontFamily: "'Roboto', sans-serif"
